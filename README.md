@@ -6,12 +6,19 @@
 
 ## Introducción
 
+Este proyecto está diseñado para simplificar y optimizar el proceso de decidir el orden de inscripción de cursos en la Pontifica Universidad Católica de Chile. El proyecto consta de una API utilizando FastAPI que se encuentra en la carpeta `backend/`. La API procesa datos históricos y realiza predicciones para obtener un orden de cursos óptimo.
+
+Para una interacción amigable y accesible, se ha creado una interfaz de usuario ubicada en la carpeta `frontend/`. Esta interfaz permite a los estudiantes obtener una mejor visualización de los datos y una experiencia más agradable.
+
+El desarrollo y proceso creativo esta documentado en el archivo [Creative_Process.md](Creative_Process.md).
+
 ## Requisitos
+
+Se configuro con [Docker](https://www.docker.com/) para facilitar el despliegue y desarrollo del proyecto con el uso de `docker-compose`. Pero no es necesario utilizarlo, ya que se puede ejecutar el proyecto sin Docker siguiendo los pasos de la sección de [desarrollo](#desarrollo).
 
 ### Backend
 
 - [Python](https://www.python.org/downloads/) >= 3.10 (idealmente 3.11)
-- [Docker](https://www.docker.com/).
 - [Poetry](https://python-poetry.org/) para la gestión de paquetes y entornos de Python.
 - `ruff` + `black` para el formateo y linting de Python.
 
