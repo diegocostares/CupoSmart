@@ -16,12 +16,12 @@ async def read_hello():
     return {"status": "OK"}
 
 
-@api_router.post("/courses/", tags=["Courses"], response_model=Course)
+@api_router.post("/courses", tags=["Courses"], response_model=Course)
 async def create_courses(course: Course):
     """
     Este endpoint recibe una lista de 5 códigos de cursos y los retorna en un orden nuevo.
     """
-    logger.DEBUG(f"Se recibieron los cursos: {course.courses}")
+    logger.debug(f"Se recibieron los cursos: {course.courses}")
     if len(course.courses) != 5:
         raise HTTPException(
             status_code=400, detail="Se requieren exactamente 5 códigos de curso"

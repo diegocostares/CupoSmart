@@ -17,19 +17,17 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
+origins = [
+    "http://localhost:5173",
+]
 
-# Middleware Settings
-#  TODO: if != "development":
-#     app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
-# !  Está bien para la producción, pero no para el desarrollo. Lo dejo para un futuro.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 app.include_router(api_router)
 
