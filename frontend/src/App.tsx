@@ -7,6 +7,7 @@ import CourseResult from "./components/CourseResult";
 export default function App() {
   const [courses, setCourses] = useState(Array(5).fill(""));
   const [showResults, setShowResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (index: number, value: string) => {
     const newCourses = [...courses];
@@ -18,6 +19,7 @@ export default function App() {
     import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(`${BACKEND_URL}/courses`, {
         method: "POST",
@@ -36,6 +38,8 @@ export default function App() {
     } catch (error) {
       console.error("Error:", error);
       setShowResults(false);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -44,14 +48,17 @@ export default function App() {
         <h1 className="text-center font-bold text-xl">CupoSmart</h1>
       </header>
       <div className="flex-1 flex justify-center items-center bg-gray-200 py-2">
-        {!showResults && (
+        {isLoading ? (
+          <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
+        ) : !showResults ? (
           <CourseForm
             courses={courses}
             onInputChange={handleInputChange}
             onSubmit={handleSubmit}
           />
+        ) : (
+          <CourseResult courses={courses} />
         )}
-        {showResults && <CourseResult courses={courses} />}
       </div>
       <footer className="text-center bg-blue-900 text-yellow-200 p-2 w-full mt-auto">
         <p className="font-semibold">CupoSmart © 2023</p>
