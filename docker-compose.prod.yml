@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  # =============================================================
+  #  FRONTEND - React
+  # =============================================================
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    expose:
+      - 3000
+
+  # =============================================================
+  #	 API - Python
+  # =============================================================
+  fastapi:
+    container_name: fastapi
+    build:
+      context: ./backend
+    restart: unless-stopped
+    expose:
+      - 8000
