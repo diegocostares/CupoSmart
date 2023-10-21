@@ -17,11 +17,13 @@
 
 ### Frontend
 
-- Node.js (con [pnpm](https://pnpm.io/es/installation)).
+- Node.js (con npm)
 
 ## Desarrollo
 
 ### Backend
+
+Utilizamos un gestor de dependencias llamado [poetry](https://python-poetry.org/docs/) que sirve para crear entornos virtuales y manejar las dependencias del proyecto.
 
 1. Instala las dependencias:
 
@@ -59,7 +61,7 @@ poetry update
 
 ### Frontend
 
-Se utiliza `npm` como gestor de paquetes.
+Se utiliza `npm` como gestor de paquetes. Para instalar las dependencias y ejecutar el programa:
 
 ```
 npm install

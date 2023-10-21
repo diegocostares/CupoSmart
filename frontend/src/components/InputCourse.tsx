@@ -1,4 +1,12 @@
-export default function InputCourse({ number }: { number: number }) {
+export default function InputCourse({
+  number,
+  value,
+  onChange,
+}: {
+  number: number;
+  value: string;
+  onChange: (val: string) => void;
+}) {
   return (
     <div className="mb-4">
       <label
@@ -8,6 +16,8 @@ export default function InputCourse({ number }: { number: number }) {
       <input
         id={`course-${number}`}
         type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         aria-label={`Ingrese el curso ${number}`}
         className="w-full p-2 border rounded-md"
       />

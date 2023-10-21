@@ -40,15 +40,16 @@ select = [
 ]
 
 ignore = [
-    "B008",   # Do not perform function call in argument defaults (to allow `arg = Depends()`)
+    "B008",     # Do not perform function call in argument defaults (to allow `arg = Depends()`)
     "ANN201",
-    "ANN202", # Missing return type annotation (sometimes return types are too complex)
-    "S101",   # Use of `assert` detected (debug assertions are useful)
-    "TCH001", # Pydantic relies heavily on runtime type reflection
-    "ANN101", # Missing type annotation for self in method
-    "E402",   # Module level import not at top of file
-    "S311",   # Standard pseudo-random
+    "ANN202",   # Missing return type annotation (sometimes return types are too complex)
+    "S101",     # Use of `assert` detected (debug assertions are useful)
+    "TCH001",   # Pydantic relies heavily on runtime type reflection
+    "ANN101",   # Missing type annotation for self in method
+    "E402",     # Module level import not at top of file
+    "S311",     # Standard pseudo-random
     "F401",
+    "ASYNC101",
 ]
 
 line-length = 120
