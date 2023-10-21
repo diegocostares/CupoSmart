@@ -1,0 +1,68 @@
+<h1 align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Escudo_de_la_Pontificia_Universidad_Cat%C3%B3lica_de_Chile.svg/1200px-Escudo_de_la_Pontificia_Universidad_Cat%C3%B3lica_de_Chile.svg.png" width="150px">
+  <br>
+    <a href=# name="readme-top">CupoSmart</a>
+</h1>
+
+## Introducción
+
+## Requisitos
+
+### Backend
+
+- [Python](https://www.python.org/downloads/) >= 3.10 (idealmente 3.11)
+- [Docker](https://www.docker.com/).
+- [Poetry](https://python-poetry.org/) para la gestión de paquetes y entornos de Python.
+- `ruff` + `black` para el formateo y linting de Python.
+
+### Frontend
+
+- Node.js (con [pnpm](https://pnpm.io/es/installation)).
+
+## Desarrollo
+
+### Backend
+
+1. Instala las dependencias:
+
+```shell
+poetry install
+```
+
+2. Inicia una sesión shell con el nuevo entorno:
+
+```shell
+poetry shell
+```
+
+3. Ejecuta la API:
+
+```shell
+poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+La API estará disponible en [localhost:8000](http://localhost:8000) y la documentación en [localhost:8000/docs](http://localhost:8000/docs).
+
+#### Agregar dependencias
+
+Para agregar nuevas dependencias, utiliza:
+
+```shell
+poetry add <nombre-del-paquete>
+```
+
+Y para actualizar las dependencias existentes:
+
+```shell
+poetry update
+```
+
+### Frontend
+
+Se utiliza `npm` como gestor de paquetes.
+
+```
+npm install
+
+pnm run dev
+```

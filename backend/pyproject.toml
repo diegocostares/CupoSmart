@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "CupoSmart API"
+version = "0.1.0"
+description = "API para CupoSmart"
+authors = ["CupoSmart"]
+readme = "../README.md"
+packages = [{ include = "api_modul" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+load-dotenv = "^0.1.0"
+fastapi = "^0.103.1"
+uvicorn = "^0.22"
+httpx = "^0.24.1"
+requests = "^2.31.0"
+pydantic = "^2.3.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+select = [
+    "F",     # flake8: Combination of common code smells
+    "E",     # pyflakes: Error-prone code constructs
+    "W",     # pycodestyle: Warning code smells that may lead to issues
+    "C90",   # cyclomatic-complexity: Cyclomatic complexity threshold (recommended < 90)
+    "N",     # flake8: Naming violations
+    "ANN",   # flake8: Annotations and metadata about the code
+    "ASYNC", # flake8: Asynchronous code issues
+    "S",     # flake8: Securing code issues
+    "SIM",   # flake8: Simplicity recommendations
+    "RUF",   # Recommendations from Ruff
+    "NPY",   # flake8: New peripherals or features related issues
+]
+
+ignore = [
+    "B008",   # Do not perform function call in argument defaults (to allow `arg = Depends()`)
+    "ANN201",
+    "ANN202", # Missing return type annotation (sometimes return types are too complex)
+    "S101",   # Use of `assert` detected (debug assertions are useful)
+    "TCH001", # Pydantic relies heavily on runtime type reflection
+    "ANN101", # Missing type annotation for self in method
+    "E402",   # Module level import not at top of file
+    "S311",   # Standard pseudo-random
+    "F401",
+]
+
+line-length = 120
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.mccabe]
+max-complexity = 15
