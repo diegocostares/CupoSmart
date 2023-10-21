@@ -1,5 +1,6 @@
 import React from "react";
 import InputCourse from "./InputCourse";
+import logo from "../assets/logo.svg";
 
 interface CourseFormProps {
   courses: string[];
@@ -14,6 +15,9 @@ const CourseForm: React.FC<CourseFormProps> = ({
 }) => {
   return (
     <div className="bg-white p-8 rounded-lg shadow-md w-96">
+      <div className="mt-4 flex justify-center">
+        <img src={logo} alt="Logo de CupoSmart" className="w-1/2" />
+      </div>
       <h1 className="text-xl font-bold mb-4">Agrega las siglas de tus ramos</h1>
       {[...Array(5)].map((_, idx) => (
         <InputCourse
