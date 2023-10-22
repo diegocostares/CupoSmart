@@ -77,3 +77,8 @@ npm install
 
 pnm run dev
 ```
+### Colaboradores
+
+- Vasco Varas Nuñez. - [Vasco-Varas](https://github.com/Vasco-Varas)
+- Diego Costa R. - [diegocostares](https://github.com/diegocostares)
+- Manuel Blanco Contreras  - [MBlancoC](https://github.com/MBlancoC)
