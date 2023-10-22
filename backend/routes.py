@@ -17,7 +17,7 @@ async def read_hello():
     return {"status": "OK"}
 
 
-@api_router.post("/courses", tags=["Courses"], response_model=Course)
+@api_router.post("/courses", tags=["Courses"], response_model=list)
 async def create_courses(course: Course):
     """
     Este endpoint recibe una lista de 5 códigos de cursos y los retorna en un orden nuevo.
