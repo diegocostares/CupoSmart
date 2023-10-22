@@ -7,4 +7,5 @@ from pydantic import BaseModel, validator
 
 
 class Course(BaseModel):
-    courses: List[str]
+    courses: List[str]  # list of courses
+    banner: int  # banner

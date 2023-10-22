@@ -38,6 +38,8 @@ Utilizamos un gestor de dependencias llamado [poetry](https://python-poetry.org/
 poetry install
 ```
 
+_Es posible que hayan problemas con tensorflow, si ocurre instalar manualmente con `poetry run pip install tensorflow[add-cuda]`_
+
 2. Inicia una sesión shell con el nuevo entorno:
 
 ```shell
