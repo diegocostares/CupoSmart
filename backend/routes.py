@@ -3,6 +3,7 @@ import time
 from dotenv import load_dotenv
 from fastapi import APIRouter, HTTPException
 
+from ia import get_all_available_courses, get_best_order
 from schemas import Course
 from utils import logger_config
 
@@ -26,6 +27,15 @@ async def create_courses(course: Course):
         raise HTTPException(
             status_code=400, detail="Se requieren exactamente 5 códigos de curso"
         )
-    # TODO: Hacer un llamado a la funcion que ordena los cursos
-    time.sleep(5)
+    course = get_best_order(course.courses, course.banner)
     return course
+
+
+@api_router.get("/courses", tags=["Courses"])
+async def get_courses():
+    """
+    Este endpoint retorna la lista de cursos disponibles.
+    """
+    logger.debug("Se recibió la solicitud de cursos disponibles")
+    list_courses = get_all_available_courses()
+    return {"courses": list_courses}

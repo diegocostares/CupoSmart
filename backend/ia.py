@@ -1,8 +1,9 @@
+import glob
+import os
+
+import joblib
 import numpy as np
 import tensorflow as tf
-import os
-import joblib
-import glob
 
 save_loc_template = "../backend/models/model_{course}.keras"
 save_loc_template_scalerx = "../backend/models/scaler_x_{course}.pkl"
@@ -26,7 +27,9 @@ def load_data(course):
 def load_and_predict(course, values_to_predict: list):
     loaded_model, scaler_x, scaler_y = load_data(course)
 
-    values_to_predict_normalized = scaler_x.transform(np.array(values_to_predict).reshape(-1, 1))
+    values_to_predict_normalized = scaler_x.transform(
+        np.array(values_to_predict).reshape(-1, 1)
+    )
 
     predictions_normalized = loaded_model.predict(values_to_predict_normalized)
 
@@ -78,22 +81,22 @@ def find_best_order(course_scores, current_config=None):
 
 
 sections = {  # (1ra_vuelta, 2da_vuelta, 1er_reajuste, 2do_reajuste)
-    '1': ((8 / 24), (8 / 24) + 5, (18.5 / 24) + 12, (8 / 24) + 14),
-    '2': ((9.5 / 24) + 3, (9.5 / 24) + 5, (17 / 24) + 12, (8 / 24) + 14),
-    '3': ((11 / 24) + 3, (11 / 24) + 5, (15.5 / 24) + 12, (9.5 / 24) + 14),
-    '4': ((12.5 / 24) + 3, (12.5 / 24) + 5, (14 / 24) + 12, (9.5 / 24) + 14),
-    '5': ((14 / 24) + 3, (14 / 24) + 5, (12.5 / 24) + 12, (11 / 24) + 14),  # 14:00
-    '6': ((15.5 / 24) + 3, (15.5 / 24) + 5, (11 / 24) + 12, (11 / 24) + 14),
-    '7': ((17 / 24) + 3, (17 / 24) + 5, (9.5 / 24) + 12, (12.5 / 24) + 14),
-    '8': ((18.5 / 24) + 3, (18.5 / 24) + 5, (8 / 24) + 12, (12.5 / 24) + 14),
-    '9': ((8 / 24) + 4, (8 / 24) + 6, (18.5 / 24) + 11, (14 / 24) + 14),
-    '10': ((9.5 / 24) + 4, (9.5 / 24) + 6, (17 / 24) + 11, (14 / 24) + 14),
-    '11': ((11 / 24) + 4, (11 / 24) + 6, (15.5 / 24) + 11, (15.5 / 24) + 14),
-    '12': ((12.5 / 24) + 4, (12.5 / 24) + 6, (14 / 24) + 11, (15.5 / 24) + 14),
-    '13': ((14 / 24) + 4, (14 / 24) + 6, (12.5 / 24) + 11, (17 / 24) + 14),
-    '14': ((15.5 / 24) + 4, (15.5 / 24) + 6, (11 / 24) + 11, (17 / 24) + 14),
-    '15': ((17 / 24) + 4, (17 / 24) + 6, (9.5 / 24) + 11, (18.5 / 24) + 14),
-    '16': ((18.5 / 24) + 4, (18.5 / 24) + 6, (8 / 24) + 11, (18.5 / 24) + 14)
+    "1": ((8 / 24), (8 / 24) + 5, (18.5 / 24) + 12, (8 / 24) + 14),
+    "2": ((9.5 / 24) + 3, (9.5 / 24) + 5, (17 / 24) + 12, (8 / 24) + 14),
+    "3": ((11 / 24) + 3, (11 / 24) + 5, (15.5 / 24) + 12, (9.5 / 24) + 14),
+    "4": ((12.5 / 24) + 3, (12.5 / 24) + 5, (14 / 24) + 12, (9.5 / 24) + 14),
+    "5": ((14 / 24) + 3, (14 / 24) + 5, (12.5 / 24) + 12, (11 / 24) + 14),  # 14:00
+    "6": ((15.5 / 24) + 3, (15.5 / 24) + 5, (11 / 24) + 12, (11 / 24) + 14),
+    "7": ((17 / 24) + 3, (17 / 24) + 5, (9.5 / 24) + 12, (12.5 / 24) + 14),
+    "8": ((18.5 / 24) + 3, (18.5 / 24) + 5, (8 / 24) + 12, (12.5 / 24) + 14),
+    "9": ((8 / 24) + 4, (8 / 24) + 6, (18.5 / 24) + 11, (14 / 24) + 14),
+    "10": ((9.5 / 24) + 4, (9.5 / 24) + 6, (17 / 24) + 11, (14 / 24) + 14),
+    "11": ((11 / 24) + 4, (11 / 24) + 6, (15.5 / 24) + 11, (15.5 / 24) + 14),
+    "12": ((12.5 / 24) + 4, (12.5 / 24) + 6, (14 / 24) + 11, (15.5 / 24) + 14),
+    "13": ((14 / 24) + 4, (14 / 24) + 6, (12.5 / 24) + 11, (17 / 24) + 14),
+    "14": ((15.5 / 24) + 4, (15.5 / 24) + 6, (11 / 24) + 11, (17 / 24) + 14),
+    "15": ((17 / 24) + 4, (17 / 24) + 6, (9.5 / 24) + 11, (18.5 / 24) + 14),
+    "16": ((18.5 / 24) + 4, (18.5 / 24) + 6, (8 / 24) + 11, (18.5 / 24) + 14),
 }
 
 
@@ -120,14 +123,24 @@ def get_best_order(courses, banner: int):
 
 
 def get_all_available_courses():
-    directory_path = '../backend/models/'  # Replace with the actual path to your "tmp" directory
+    directory_path = (
+        "../backend/models/"  # Replace with the actual path to your "tmp" directory
+    )
 
     # Use glob to find files starting with "model_"
-    file_list = glob.glob(f'{directory_path}/model_*')
+    file_list = glob.glob(f"{directory_path}/model_*")
 
     return [os.path.basename(file_path)[6:-6] for file_path in file_list]
 
 
-# courses_to_predict = ['IIC2133', 'IBM2101', 'IBM2992', 'EYP1025', 'IMT2565', 'FIS1514']
+if __name__ == "__main__":
+    courses_to_predict = [
+        "IIC2133",
+        "IBM2101",
+        "IBM2992",
+        "EYP1025",
+        "IMT2565",
+        "FIS1514",
+    ]
 
-# print(get_best_order(courses_to_predict, banner=2)[0])
+    print(get_best_order(courses_to_predict, banner=2)[0])
