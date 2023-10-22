@@ -19,6 +19,9 @@
 
 - Node.js (con npm)
 
+### Datos
+- [quota.csv](https://onedrive.live.com/download?resid=461550F0C2C01195%21591027&authkey=!AHJRWqVhzqsb-IM)
+
 ## Desarrollo
 
 ### Backend
