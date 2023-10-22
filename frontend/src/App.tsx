@@ -9,6 +9,7 @@ export default function App() {
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [availableCourses, setAvailableCourses] = useState([]);
+  const [banner, setBanner] = useState("");
 
   const handleInputChange = (index: number, value: string) => {
     const newCourses = [...courses];
@@ -39,13 +40,14 @@ export default function App() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+    console.log({ courses, banner: Number(banner) });
     try {
       const response = await fetch(`${BACKEND_URL}/courses`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ courses }),
+        body: JSON.stringify({ courses, banner: Number(banner) }),
       });
 
       if (!response.ok) {
@@ -61,6 +63,7 @@ export default function App() {
       setIsLoading(false);
     }
   };
+
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-br from-blue-200 to-blue-600">
       <header className="bg-blue-900 text-blue-200 p-2 w-full fixed top-0 left-0 z-10 flex justify-between items-center mb-auto">
@@ -73,6 +76,8 @@ export default function App() {
           <CourseForm
             courses={courses}
             availableCourses={availableCourses}
+            banner={banner}
+            onBannerChange={setBanner}
             onInputChange={handleInputChange}
             onSubmit={handleSubmit}
           />
