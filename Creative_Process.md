@@ -115,3 +115,50 @@ Para resolver el problema fuimos pensando varias ideas.
 # Obtención de datos
 
 Se buscaron datos de dos fuentes, la primera es de la pagina del profesor [Hernán Valdivieso](https://hernan4444.github.io/cupos-banner) y la segunda es de la base de datos que maneja [ramos-uc](https://github.com/open-source-uc/ramos-uc).
+
+# Comentarios luego del desarrollo
+
+No tomamos cursos en el reajuste (de momento). Solo tomamos en la primera y segunda toma
+
+Solo tenemos 921 cursos registrados (Es facil agregar el resto, simplemente necesitamos hacer scrapping de los datos para entrenar el resto de los cursos)
+
+De muestra, utilizamos ['IIC2133', 'IBM2101', 'IBM2992', 'EYP1025', 'IMT2565', 'FIS1514'] y banner 2. Lo que nos da un resultado de:
+Primer día:
+['IIC2133', 'IBM2101', 'FIS1514']
+Segundo día:
+['IBM2992', 'EYP1025', 'IMT2565']
+
+To-Do:
+
+- Utilizar un scaler global
+- Utilizar un periodo de toma de ramos de 4 días en vez de 1 semana
+
+## Modelo de Red Neuronal:
+
+1. _Arquitectura:_
+
+   - Tipo: Modelo Secuencial (Sequential) de TensorFlow Keras.
+   - Capas:
+     1. Capa Densa: 7 neuronas, activación ReLU, forma de entrada (1,).
+     2. Capa Densa: 7 neuronas, activación ReLU.
+     3. Capa Densa (Salida): 1 neurona, activación lineal.
+
+2. _Compilación:_
+
+   - Optimizador: Adam.
+   - Función de Pérdida: Error Cuadrático Medio (Mean Squared Error, MSE).
+
+3. _Early Stopping:_
+
+   - Monitorización: Pérdida (loss) durante el entrenamiento.
+   - Paciencia: 20 épocas.
+   - Restauración de Mejores Pesos: Activada.
+
+4. _Entrenamiento:_
+
+   - Épocas: 1000.
+   - Verbose: 0 (sin salida de entrenamiento).
+
+5. _Datos:_
+   - Entrada: `x_values_normalized`.
+   - Salida: `y_values_normalized`.
