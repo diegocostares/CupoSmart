@@ -1,7 +1,7 @@
 <h1 align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Escudo_de_la_Pontificia_Universidad_Cat%C3%B3lica_de_Chile.svg/1200px-Escudo_de_la_Pontificia_Universidad_Cat%C3%B3lica_de_Chile.svg.png" width="150px">
+  <img src="CupoSmart_logo.jpeg" width="150px">
   <br>
-    <a href=# name="readme-top">CupoSmart</a>
+  <a href=# name="readme-top">CupoSmart</a>
 </h1>
 
 ## Introducción
