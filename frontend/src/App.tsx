@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./assets/logo.svg";
 import InputCourse from "./components/InputCourse";
 import CourseForm from "./components/CourseForm";
@@ -8,6 +8,7 @@ export default function App() {
   const [courses, setCourses] = useState(Array(5).fill(""));
   const [showResults, setShowResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [availableCourses, setAvailableCourses] = useState([]);
 
   const handleInputChange = (index: number, value: string) => {
     const newCourses = [...courses];
@@ -17,6 +18,24 @@ export default function App() {
 
   const BACKEND_URL =
     import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+
+  useEffect(() => {
+    // Cargar los cursos disponibles desde el backend
+    const loadAvailableCourses = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/courses`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch available courses");
+        }
+        const data = await response.json();
+        setAvailableCourses(data.courses || []);
+      } catch (error) {
+        console.error("Error loading available courses:", error);
+      }
+    };
+
+    loadAvailableCourses();
+  }, []);
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -53,6 +72,7 @@ export default function App() {
         ) : !showResults ? (
           <CourseForm
             courses={courses}
+            availableCourses={availableCourses}
             onInputChange={handleInputChange}
             onSubmit={handleSubmit}
           />
